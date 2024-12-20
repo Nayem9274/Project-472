@@ -1,36 +1,37 @@
 # Title: Lightweight Deep Learning Models for Histopathological Cancer Cell Classification
-# Problem Statement:
 
--Develop lightweight models to classify histopathological cancer cells efficiently, addressing the challenges of small and imbalanced datasets.
+# Problem Statement
 
--Use transfer learning and data augmentation to improve classification accuracy.
+- Develop lightweight models to classify histopathological cancer cells efficiently, addressing the challenges of small and imbalanced datasets.
 
-# Datasets:
+- Use transfer learning and data augmentation to improve classification accuracy.
 
--CRC-VAL-HE-7K: Contains 7180 colorectal cancer patches with 9 tissue classes.
+# Datasets
 
--PathMNIST: 100K histological patches for pretraining.
+- CRC-VAL-HE-7K: Contains 7180 colorectal cancer patches with 9 tissue classes.
 
-# Proposed Models:
+- PathMNIST: 100K histological patches for pretraining.
 
-# 1. SEBlock Integration:
--Focus on channel-wise attention using Squeeze-and-Excitation (SE) blocks.
+# Proposed Models
 
--Improves performance by recalibrating important feature channels.
-# 2. MSFF Integration:
--Captures multi-scale spatial features through Adaptive Average Pooling.
+### 1. SEBlock Integration:
+- Focus on channel-wise attention using Squeeze-and-Excitation (SE) blocks.
 
--Balances local and global spatial information.
-# 3. CBAM Integration:
--Combines channel and spatial attention for better feature refinement.
+- Improves performance by recalibrating important feature channels.
+### 2. MSFF Integration:
+- Captures multi-scale spatial features through Adaptive Average Pooling.
 
-# Key Results:
+- Balances local and global spatial information.
+### 3. CBAM Integration:
+- Combines channel and spatial attention for better feature refinement.
 
--SEBlock Model achieved the best accuracy (98%) due to its simplicity and robust feature focus.
+# Key Results
 
--MSFF and CBAM also performed well but showed variability in performance due to sensitivity to domain shifts and dataset size.
+- SEBlock Model achieved the best accuracy (98%) due to its simplicity and robust feature focus.
 
-# Experimenting with original DeepCMorph and modified DeepCMorph model(classification module only):
+- MSFF and CBAM also performed well but showed variability in performance due to sensitivity to domain shifts and dataset size.
+
+# Experimenting with original DeepCMorph and modified DeepCMorph model(classification module only)
 
 - Added "Residual Blocks" to improve feature learning by preserving input information and mitigating the vanishing gradient problem.
 
@@ -39,15 +40,21 @@
 - The updated DeepCMorph model demonstrates a significant performance boost due to the addition of residual blocks, SE attention.
 
 
-# Conclusion:
+# Conclusion
 
--Lightweight architectures with attention mechanisms can efficiently handle small and imbalanced datasets.
+- Lightweight architectures with attention mechanisms can efficiently handle small and imbalanced datasets.
 
--The SEBlock model provides the best trade-off between accuracy and computational efficiency.
+- The SEBlock model provides the best trade-off between accuracy and computational efficiency.
 
-# Description of notebooks:
+# Description of notebooks
 
-In **A.ipynb**, we have 2 lightweight models (B0+SE & B0+MSFF) and experiment on them using the CRC-VAL-HE-7K and PathMNIST(CRC-100K) datasets. We did 4 experiments. They are: 1. Train and Test on CRC-VAL-HE-7K, 2. Train and Test on CRC-VAL-HE-7K (with augmentation), 3. Train and Test on PathMNIST dataset. 4. Train on PathMNIST+ Finetuning on CRC-VAL-HE-7K. Another model (B0+CBB) is on the second notebook(**B.ipynb**).
+In the notebook (**A.ipynb**), we have 2 lightweight models (B0+SE & B0+MSFF) and experiment on them using the CRC-VAL-HE-7K and PathMNIST(CRC-100K) datasets. We did 4 experiments. They are: 
+1. Train and Test on CRC-VAL-HE-7K
+2. Train and Test on CRC-VAL-HE-7K (with augmentation)
+3. Train and Test on PathMNIST dataset.
+4. Train on PathMNIST+ Finetuning on CRC-VAL-HE-7K.
+
+Another model (B0+CBB) is on the second notebook (**B.ipynb**).
 
 Finally, we did some experiment on the original model of the paper (DeepCMorph). This model has 2 modules: segmentation and classification module. For simplicity purpose, we worked with only the 'classification' module. We used the CRC-VAL-HE-7K for training and testing purpose. We then modified DeepCMorph Model by adding residual blocks and SE block (for attention purpose).
 
@@ -56,3 +63,5 @@ Experiment notes:
 -We used cross-entropy/Focal loss.
 
 -We used patience=5 for early stopping in order to avoid overfitting.
+
+Paper where DeepCMorph is introduced: https://openaccess.thecvf.com/content/CVPR2024W/CVMI/papers/Ignatov_Histopathological_Image_Classification_with_Cell_Morphology_Aware_Deep_Neural_Networks_CVPRW_2024_paper.pdf
